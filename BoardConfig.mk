@@ -90,6 +90,11 @@ COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB -DOMAP_ICS_CAMERA -DU
 
 BOARD_SYSFS_LIGHT_SENSOR := "/sys/devices/platform/omap/omap_i2c.2/i2c-2/2-0060/leds/lcd-backlight/als"
 
+
+BOARD_UMS_LUNFILE := "/sys/devices/platform/omap/musb-omap2430/musb-hdrc/gadget/lun0/file"
+
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
+
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"rs"' -DBOARD_CHARGING_CMDLINE_VALUE='"c"'
 ## Radio fixes
 BOARD_RIL_CLASS := ../../../device/lge/p970/ril/

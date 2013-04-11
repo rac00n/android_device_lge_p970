@@ -30,7 +30,9 @@ ro.bt.bdaddr_path=/sys/devices/platform/bd_address/bdaddr_if
 # Dummy LGE lightsensor
 ro.hardware.respect_als=true
 
-persist.sys.usb.config=mtp,adb
+# Usb mass storage
+sys.usb.state=mass_storage,adb
+persist.sys.usb.config=mass_storage,adb
 
 ## Limit activities
 sys.mem.max_hidden_apps=5
