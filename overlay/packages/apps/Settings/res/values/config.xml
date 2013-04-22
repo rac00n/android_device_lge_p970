@@ -20,4 +20,6 @@
     <bool name="config_show_expandedDesktop">true</bool>
     <!-- Show Volume Rocker Wake preference -->
     <bool name="config_show_volumeRockerWake">true</bool>
+    <!-- Enable Torch -->
+    <bool name="has_led_flash">true</bool>
 </resources>
