@@ -2,9 +2,6 @@
 # system.prop for p970
 #
 
-## Enable OMAP stuffs
-com.ti.omap_enhancement=true
-
 ro.sf.lcd_density=240
 
 ## Radio stuffs
