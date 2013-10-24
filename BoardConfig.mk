@@ -125,7 +125,7 @@ BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 # HW Graphics (EGL fixes + webkit fix)
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/lge/p970/configs/egl.cfg
+BOARD_EGL_CFG := ../../../device/lge/p970/egl.cfg
 ENABLE_WEBGL := true
 
 #BOARD_TOUCH_RECOVERY := true
