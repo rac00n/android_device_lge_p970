@@ -125,7 +125,7 @@ BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 # HW Graphics (EGL fixes + webkit fix)
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := ../../../device/lge/p970/egl.cfg
+BOARD_EGL_CFG := device/lge/p970/egl.cfg
 ENABLE_WEBGL := true
 
 #BOARD_TOUCH_RECOVERY := true
@@ -135,6 +135,9 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/lge/p970/recovery/graphics.c
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p970/vibrator.c
 
 #COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB -DOMAP_ICS_CAMERA -DDONT_USE_FENCE_SYNC
+
+# disable use of EGL_KHR_fence_sync extension, since it slows things down
+COMMON_GLOBAL_CFLAGS += -DDONT_USE_FENCE_SYNC
 
 COMMON_GLOBAL_CFLAGS += -DPRODUCT_LG_P970
 
