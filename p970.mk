@@ -125,8 +125,8 @@ PRODUCT_PACKAGES += \
     libaudioutils \
     libtiutils \
     libion \
-    libomap_mm_library_jni
-    #camera.omap3 \#
+    libomap_mm_library_jni \
+    camera.omap3
 
 $(call inherit-product, build/target/product/full.mk)
 
