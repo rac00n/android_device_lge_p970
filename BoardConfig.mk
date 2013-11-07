@@ -129,9 +129,11 @@ USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/lge/p970/egl.cfg
 ENABLE_WEBGL := true
 
+# Recovery
 #BOARD_TOUCH_RECOVERY := true
 BOARD_CUSTOM_GRAPHICS := ../../../device/lge/p970/recovery/graphics.c
 #TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_FSTAB := device/lge/p970/configs/fstab.p970
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p970/vibrator.c
 

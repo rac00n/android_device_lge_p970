@@ -5,14 +5,13 @@ on early-init
 # create mountpoints
     mkdir /storage 0775 root system
     mkdir /mnt/shell/sdcard 0700 shell shell
-    mkdir /storage/sdcard 0555 root root
+    mkdir /storage/sdcard0 0555 root root
 
-    export EXTERNAL_STORAGE /storage/sdcard/
+    export EXTERNAL_STORAGE /storage/sdcard0/
 
     # Support legacy paths
-    symlink /storage/sdcard/ /sdcard
-    symlink /storage/sdcard/ /mnt/sdcard
-    symlink /storage/sdcard/ /storage/sdcard0
+    symlink /storage/sdcard0/ /sdcard
+    symlink /storage/sdcard0/ /mnt/sdcard
 
 on init
     export DSP_PATH /system/lib/dsp
@@ -45,6 +44,8 @@ on fs
     mount ext4 /dev/block/mmcblk0p9 /data nosuid nodev noatime barrier=1 wait
     chown system system /data
     chmod 0771 /data
+
+    mount_all fstab.black
 
 #[LGE_star]Hyunwoong.ahn^M
     mount ext3 /dev/block/mmcblk0p6 /dvp/hwkey nosuid nodev
