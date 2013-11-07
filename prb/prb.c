@@ -28,7 +28,7 @@
  * as init starts */
 
 int main() {
-	char bootstate[3];
+	char bootstate[PROPERTY_VALUE_MAX];
 
 	property_get("dev.bootcomplete", bootstate, "0");
 
