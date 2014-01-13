@@ -108,7 +108,7 @@ endif
 #Mobiledata
 BOARD_MOBILEDATA_INTERFACE_NAME := "vsnet0"
 
-#Wifi
+# Wi-Fi
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
@@ -116,11 +116,10 @@ BOARD_HOSTAPD_DRIVER        := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE           := bcmdhd
 BOARD_WLAN_DEVICE_REV       := bcm4329
-WIFI_DRIVER_MODULE_NAME         := "bcmdhd"
-WIFI_DRIVER_MODULE_ARG          := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/system/etc/wifi/nvram.txt config_path=/data/misc/wifi/config"
-WIFI_DRIVER_HAS_LGE_SOFTAP      := true
-WIFI_DRIVER_FW_PATH_STA         := "/system/etc/firmware/fw_bcm4329.bin"
-WIFI_DRIVER_FW_PATH_AP          := "/system/etc/firmware/fw_bcm4329_ap.bin"
+WIFI_DRIVER_MODULE_NAME     := "bcmdhd"
+WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA     := "/vendor/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_AP      := "/vendor/firmware/fw_bcmdhd_apsta.bin"
 
 # FM Radio
 BOARD_HAVE_FM_RADIO := true
@@ -130,6 +129,8 @@ BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/lge/p970/egl.cfg
 ENABLE_WEBGL := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
 # Recovery
 #BOARD_TOUCH_RECOVERY := true
@@ -137,6 +138,7 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/lge/p970/recovery/graphics.c
 #TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := device/lge/p970/configs/fstab.p970
 TARGET_RECOVERY_INITRC := device/lge/p970/init.recovery.p970.rc
+RECOVERY_FSTAB_VERSION := 2
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p970/vibrator.c
 
@@ -153,7 +155,13 @@ COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"rs"' -DBOARD_CHARGING_CM
 
 # Enable suspend in charger
 BOARD_ALLOW_SUSPEND_IN_CHARGER := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
 ## Radio fixes
 BOARD_RIL_CLASS := ../../../device/lge/p970/ril/
+
+#KitKat specific flags
+BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
+SENSORS_NEED_SETRATE_ON_ENABLE := true
+
 

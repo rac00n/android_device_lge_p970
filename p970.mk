@@ -128,6 +128,28 @@ PRODUCT_PACKAGES += \
     libion \
     libomap_mm_library_jni
 
+# SGX530 is slower with the scissor optimization enabled
+PRODUCT_PROPERTY_OVERRIDES += \
+       ro.hwui.disable_scissor_opt=true
+
+# GPU Producer to CPU Consumer
+PRODUCT_PROPERTY_OVERRIDES += \
+       ro.bq.gpu_to_cpu_unsupported=1
+
+# Low RAM Device
+PRODUCT_PROPERTY_OVERRIDES += \
+       ro.config.low_ram=true
+
+# enable Google-specific location features,
+# like NetworkLocationProvider and LocationCollector
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.com.google.locationfeatures=1 \
+        ro.com.google.networklocation=1
+
+# No SELinux
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.boot.selinux=disabled
+
 $(call inherit-product, build/target/product/full.mk)
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
