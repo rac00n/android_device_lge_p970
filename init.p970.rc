@@ -1,8 +1,5 @@
 import init.black.usb.rc
 
-on early-init
-
-
 on init
     export EXTERNAL_STORAGE /storage/sdcard0
 
