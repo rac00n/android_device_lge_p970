@@ -161,3 +161,5 @@ PRODUCT_NAME := full_p970
 PRODUCT_DEVICE := p970
 PRODUCT_MODEL := LG-P970
 PRODUCT_MANUFACTURER := LGE
+
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)

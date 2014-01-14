@@ -108,7 +108,7 @@ endif
 #Mobiledata
 BOARD_MOBILEDATA_INTERFACE_NAME := "vsnet0"
 
-# Wi-Fi
+#Wifi
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
@@ -162,5 +162,5 @@ BOARD_RIL_CLASS := ../../../device/lge/p970/ril/
 #KitKat specific flags
 BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 SENSORS_NEED_SETRATE_ON_ENABLE := true
-SKIP_SET_METADATA := true
+USE_SET_METADATA := false
 

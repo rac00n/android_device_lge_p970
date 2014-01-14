@@ -512,6 +512,9 @@ on boot
     chmod 0666 /sys/devices/platform/bd_address/bdaddr_if
     write /sys/class/rfkill/rfkill0/state 0
 
+# load wifi module
+    insmod /system/lib/modules/bcmdhd.ko
+
 service prb /sbin/prb
     user root
     disabled
@@ -544,6 +547,14 @@ on property:dev.bootcomplete=1
     write /sys/devices/platform/omap/omap_i2c.2/i2c-2/2-001a/blink_enable 0
     start setcpversion
 
+#Wifi services
+service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin \
+    -O/data/misc/wifi/sockets -g@android:wpa_wlan0
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
 service dhcpcd_wlan0 /system/bin/dhcpcd -BKAL
     class main
     disabled
@@ -554,14 +565,34 @@ service iprenew_wlan0 /system/bin/dhcpcd -n wlan0
     disabled
     oneshot
 
-on property:init.svc.wpa_supplicant=stopped
-    stop dhcpcd_wlan0
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
 
-service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf 
+service iprenew_bt-pan /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+    class main
+    disabled
+    oneshot
+
+service iprenew_p2p /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service hostapd_bin /system/bin/hostapd -dd /data/misc/wifi/hostapd.conf
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
+
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd_wlan0
 
 service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
     --baudrate 3000000 --patchram /etc/firmware/BCM43291A0_003.001.013.0066.xxxx_B-Project.hcd /dev/ttyO1
