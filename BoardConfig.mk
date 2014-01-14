@@ -138,11 +138,10 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/lge/p970/recovery/graphics.c
 #TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := device/lge/p970/configs/fstab.p970
 TARGET_RECOVERY_INITRC := device/lge/p970/init.recovery.p970.rc
-RECOVERY_FSTAB_VERSION := 2
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p970/vibrator.c
 
-COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB -DOMAP_ICS_CAMERA
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 
 # disable use of EGL_KHR_fence_sync extension, since it slows things down
 COMMON_GLOBAL_CFLAGS += -DDONT_USE_FENCE_SYNC
@@ -163,5 +162,5 @@ BOARD_RIL_CLASS := ../../../device/lge/p970/ril/
 #KitKat specific flags
 BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 SENSORS_NEED_SETRATE_ON_ENABLE := true
-
+SKIP_SET_METADATA := true
 
