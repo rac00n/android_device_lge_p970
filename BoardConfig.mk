@@ -146,8 +146,6 @@ COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 # disable use of EGL_KHR_fence_sync extension, since it slows things down
 COMMON_GLOBAL_CFLAGS += -DDONT_USE_FENCE_SYNC
 
-COMMON_GLOBAL_CFLAGS += -DPRODUCT_LG_P970
-
 BOARD_SYSFS_LIGHT_SENSOR := "/sys/devices/platform/omap/omap_i2c.2/i2c-2/2-0060/leds/lcd-backlight/als"
 
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"rs"' -DBOARD_CHARGING_CMDLINE_VALUE='"c"'
