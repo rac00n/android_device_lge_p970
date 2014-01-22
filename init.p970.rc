@@ -568,7 +568,7 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c/data/misc/wi
     oneshot
 
 service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
-    --baudrate 3000000 --patchram /etc/firmware/BCM43291A0_003.001.013.0066.xxxx_B-Project.hcd /dev/ttyO1
+    --baudrate 3000000 --patchram /etc/firmware/BCM43291A0_003.001.013.0141.0142.hcd /dev/ttyO1
     user bluetooth
     class main
     group bluetooth net_bt_admin

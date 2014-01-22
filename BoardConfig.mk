@@ -111,6 +111,8 @@ BOARD_MOBILEDATA_INTERFACE_NAME := "vsnet0"
 BOARD_WLAN_DEVICE := bcm4329
 WIFI_DRIVER_FW_PATH_STA         := "/system/etc/firmware/fw_bcm4329.bin"
 WIFI_DRIVER_FW_PATH_AP          := "/system/etc/firmware/fw_bcm4329_ap.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/firmware/fw_bcm4329_p2p.bin"
+WIFI_DRIVER_FW_PATH_MFG          := "/system/etc/firmware/fw_bcm4329_mfg.bin"
 WIFI_DRIVER_MODULE_NAME         := "wireless"
 WIFI_DRIVER_MODULE_PATH         := "/system/lib/modules/wireless.ko"
 WIFI_DRIVER_MODULE_ARG          := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/system/etc/wifi/nvram.txt config_path=/data/misc/wifi/config"
