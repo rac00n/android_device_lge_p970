@@ -143,7 +143,9 @@ TARGET_RECOVERY_INITRC := device/lge/p970/init.recovery.p970.rc
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p970/vibrator.c
 
-COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB -DOMAP_ICS_CAMERA
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
+
+LG_CAMERA_HARDWARE := true
 
 # disable use of EGL_KHR_fence_sync extension, since it slows things down
 COMMON_GLOBAL_CFLAGS += -DDONT_USE_FENCE_SYNC
