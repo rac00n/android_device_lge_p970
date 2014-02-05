@@ -84,7 +84,6 @@ PRODUCT_PACKAGES += \
     power.black \
     prb \
     lgcpversion \
-    wifi \
     wifimac
 
 # OMX components
@@ -125,7 +124,6 @@ PRODUCT_PACKAGES += \
     hwcomposer.black \
     lights.p970 \
     audio.a2dp.default \
-    audio.usb.default \
     libaudioutils \
     libtiutils \
     libion \
