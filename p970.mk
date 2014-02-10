@@ -121,7 +121,7 @@ PRODUCT_PACKAGES += \
     libOMX.TI.G726.decode
 
 PRODUCT_PACKAGES += \
-    hwcomposer.black \
+    hwcomposer.omap3 \
     lights.p970 \
     audio.a2dp.default \
     libaudioutils \
