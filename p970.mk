@@ -127,7 +127,8 @@ PRODUCT_PACKAGES += \
     libaudioutils \
     libtiutils \
     libion \
-    libomap_mm_library_jni
+    libomap_mm_library_jni \
+    libemoji
 
 # SGX530 is slower with the scissor optimization enabled
 PRODUCT_PROPERTY_OVERRIDES += \
