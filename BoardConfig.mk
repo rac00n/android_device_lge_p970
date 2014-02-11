@@ -35,21 +35,7 @@ ifdef OMAP_ENHANCEMENT
 COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT -DTARGET_OMAP3 -DOMAP_ENHANCEMENT_CPCAM -DOMAP_ENHANCEMENT_VTC
 endif
 
-# for frameworks/native/services/surfaceflinger
-# use EGL_IMG_context_priority extension, which helps performance
-COMMON_GLOBAL_CFLAGS += -DHAS_CONTEXT_PRIORITY
-
 TARGET_SPECIFIC_HEADER_PATH := device/lge/p970/include
-
-# Makefile variables and C/C++ macros to recognise current pastry
-ifeq ($(shell test $(PLATFORM_SDK_VERSION) -ge 16 || echo 1),)
-    ANDROID_API_JB_OR_LATER := true
-    COMMON_GLOBAL_CFLAGS += -DANDROID_API_JB_OR_LATER
-endif
-ifeq ($(shell test $(PLATFORM_SDK_VERSION) -ge 14 || echo 1),)
-    ANDROID_API_ICS_OR_LATER := true
-    COMMON_GLOBAL_CFLAGS += -DANDROID_API_ICS_OR_LATER
-endif
 
 #Bootanimation
 TARGET_SCREEN_HEIGHT := 800
@@ -67,10 +53,8 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_KERNEL_CMDLINE :=
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_PAGE_SIZE := 0x00000800
-# Try to build the kernel
+TARGET_KERNEL_SOURCE := kernel/lge/p970
 TARGET_KERNEL_CONFIG := cyanogenmod_p970_defconfig
-# Keep this as a fallback
-TARGET_PREBUILT_KERNEL := device/lge/p970/kernel
 
 BOARD_NEEDS_CUTILS_LOG := true
 
@@ -142,15 +126,23 @@ TARGET_RECOVERY_INITRC := device/lge/p970/init.recovery.p970.rc
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p970/vibrator.c
 
-COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB -DOMAP_ICS_CAMERA -DDONT_USE_FENCE_SYNC
+# for legacy blobs
+COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB -DOMAP_ICS_CAMERA -DNEEDS_VECTORIMPL_SYMBOLS -DP970_ICS_CAMERA -DP970_ICS_AUDIO
+
+# for frameworks/native/services/surfaceflinger
+# use EGL_IMG_context_priority extension, which helps performance
+COMMON_GLOBAL_CFLAGS += -DHAS_CONTEXT_PRIORITY
+
+# for frameworks/native/libs/gui
+# disable use of EGL_KHR_fence_sync extension, since it slows things down
+COMMON_GLOBAL_CFLAGS += -DDONT_USE_FENCE_SYNC
 
 LG_CAMERA_HARDWARE := true
 
 BOARD_SYSFS_LIGHT_SENSOR := "/sys/devices/platform/omap/omap_i2c.2/i2c-2/2-0060/leds/lcd-backlight/als"
 
+# Charger mode
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"rs"' -DBOARD_CHARGING_CMDLINE_VALUE='"c"'
-
-# Enable suspend in charger
 BOARD_ALLOW_SUSPEND_IN_CHARGER := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
@@ -161,5 +153,3 @@ BOARD_RIL_CLASS := ../../../device/lge/p970/ril/
 BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 SENSORS_NEED_SETRATE_ON_ENABLE := true
 USE_SET_METADATA := false
-
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS -DP970_ICS_CAMERA -DP970_ICS_AUDIO
