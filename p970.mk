@@ -44,6 +44,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
+# PowerVR graphics driver configuration
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/configs/powervr.ini:system/etc/powervr.ini
+
 # RIL stuffs
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/ipc_channels.config:system/etc/ipc_channels.config \
