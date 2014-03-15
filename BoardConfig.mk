@@ -1,29 +1,16 @@
-#USE_CAMERA_STUB := true
-
 # inherit from the proprietary version
 -include vendor/lge/p970/BoardConfigVendor.mk
 
 # Board configuration
+TARGET_ARCH := arm
 TARGET_BOARD_PLATFORM := omap3
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH := arm
 TARGET_CPU_VARIANT := cortex-a8
 TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_ARCH_VARIANT_CPU := cortex-a8
-TARGET_ARCH_VARIANT_FPU := neon
+TARGET_CPU_VARIANT := cortex-a8
 TARGET_ARCH_LOWMEM := true
 ARCH_ARM_HAVE_ARMV7A := true
-ARCH_ARM_HAVE_TLS_REGISTER := true
-
-TARGET_GLOBAL_CFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
-TARGET_arm_CFLAGS := -O3 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops \
-                       -fmodulo-sched -fmodulo-sched-allow-regmoves
-TARGET_thumb_CFLAGS := -mthumb \
-                        -Os \
-                        -fomit-frame-pointer \
-                        -fstrict-aliasing
 
 TARGET_BOOTLOADER_BOARD_NAME := p970
 TARGET_PROVIDES_INIT_TARGET_RC := true
@@ -38,10 +25,9 @@ endif
 TARGET_SPECIFIC_HEADER_PATH := device/lge/p970/include
 
 #Bootanimation
-TARGET_SCREEN_HEIGHT := 800
-TARGET_SCREEN_WIDTH := 480
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+TARGET_BOOTANIMATION_USE_565 := true
 
 #Partitioning
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -73,21 +59,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/p970/bluetooth
 # OMX
 HARDWARE_OMX := true
 
-ifdef HARDWARE_OMX
-OMX_JPEG := true
-OMX_VENDOR := ti
-TARGET_USE_OMX_RECOVERY := true
-TARGET_USE_OMAP_COMPAT  := true
-BUILD_WITH_TI_AUDIO := 1
-BUILD_PV_VIDEO_ENCODERS := 1
-OMX_VENDOR_INCLUDES := \
-  hardware/ti/omap3/omx/system/src/openmax_il/omx_core/inc \
-  hardware/ti/omap3/omx/image/src/openmax_il/jpeg_enc/inc
-OMX_VENDOR_WRAPPER := TI_OMX_Wrapper
-BOARD_OPENCORE_LIBRARIES := libOMX_Core
-BOARD_OPENCORE_FLAGS := -DHARDWARE_OMX=1
-endif
-
 #Mobiledata
 BOARD_MOBILEDATA_INTERFACE_NAME := "vsnet0"
 
@@ -95,8 +66,8 @@ BOARD_MOBILEDATA_INTERFACE_NAME := "vsnet0"
 BOARD_WLAN_DEVICE := bcm4329
 WIFI_DRIVER_FW_PATH_STA         := "/system/etc/firmware/fw_bcm4329.bin"
 WIFI_DRIVER_FW_PATH_AP          := "/system/etc/firmware/fw_bcm4329_ap.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/firmware/fw_bcm4329_p2p.bin"
-WIFI_DRIVER_FW_PATH_MFG          := "/system/etc/firmware/fw_bcm4329_mfg.bin"
+WIFI_DRIVER_FW_PATH_P2P         := "/system/etc/firmware/fw_bcm4329_p2p.bin"
+WIFI_DRIVER_FW_PATH_MFG         := "/system/etc/firmware/fw_bcm4329_mfg.bin"
 WIFI_DRIVER_MODULE_NAME         := "wireless"
 WIFI_DRIVER_MODULE_PATH         := "/system/lib/modules/wireless.ko"
 WIFI_DRIVER_MODULE_ARG          := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/system/etc/wifi/nvram.txt config_path=/data/misc/wifi/config"
@@ -123,6 +94,7 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/lge/p970/recovery/graphics.c
 #TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := device/lge/p970/configs/fstab.p970
 TARGET_RECOVERY_INITRC := device/lge/p970/init.recovery.p970.rc
+RECOVERY_FSTAB_VERSION := 2
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p970/vibrator.c
 
