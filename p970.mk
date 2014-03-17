@@ -88,7 +88,8 @@ PRODUCT_PACKAGES += \
     power.black \
     prb \
     lgcpversion \
-    wifimac
+    wifimac \
+    bdaddr_read
 
 # OMX components
 PRODUCT_PACKAGES += \

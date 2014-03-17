@@ -502,6 +502,16 @@ on boot
     chmod 0666 /sys/devices/platform/bd_address/bdaddr_if
     write /sys/class/rfkill/rfkill0/state 0
 
+service bdaddr /system/bin/bdaddr_read
+    class main
+    user root
+    group system bluetooth
+    disabled
+    oneshot
+
+on property:ril.bt_macaddr=*
+    start bdaddr
+
 service prb /sbin/prb
     user root
     disabled

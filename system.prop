@@ -22,8 +22,6 @@ ro.com.google.clientidbase.gmm=android-lge
 ro.com.google.clientidbase.yt=android-lge
 ro.com.google.clientidbase.am=android-lge
 
-ro.bt.bdaddr_path=/sys/devices/platform/bd_address/bdaddr_if
-
 # Dummy LGE lightsensor
 ro.hardware.respect_als=true
 
