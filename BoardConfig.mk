@@ -42,8 +42,6 @@ BOARD_PAGE_SIZE := 0x00000800
 TARGET_KERNEL_SOURCE := kernel/lge/p970
 TARGET_KERNEL_CONFIG := cyanogenmod_p970_defconfig
 
-BOARD_NEEDS_CUTILS_LOG := true
-
 #Storage
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/omap/musb-omap2430/musb-hdrc/gadget/lun%d/file"
 
