@@ -36,6 +36,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
@@ -89,6 +90,7 @@ PRODUCT_PACKAGES += \
     prb \
     lgcpversion \
     wifimac \
+    hostapd.conf \
     bdaddr_read
 
 # OMX components
@@ -99,40 +101,38 @@ PRODUCT_PACKAGES += \
     libPERF \
     libOMX_Core \
     libLCML \
-    libOMX.TI.Video.Decoder \
-    libOMX.TI.Video.encoder \
-    libOMX.TI.WBAMR.decode \
+    libtiutils \
+    libion \
+    libomap_mm_library_jni \
     libOMX.TI.AAC.encode \
-    libOMX.TI.G722.decode \
-    libOMX.TI.MP3.decode \
-    libOMX.TI.WMA.decode \
-    libOMX.TI.Video.encoder \
-    libOMX.TI.WBAMR.encode \
-    libOMX.TI.G729.encode \
     libOMX.TI.AAC.decode \
-    libOMX.TI.VPP \
-    libOMX.TI.G711.encode \
-    libOMX.TI.JPEG.encoder \
-    libOMX.TI.G711.decode \
-    libOMX.TI.ILBC.decode \
-    libOMX.TI.ILBC.encode \
     libOMX.TI.AMR.encode \
+    libOMX.TI.AMR.decode \
+    libOMX.TI.G711.decode \
+    libOMX.TI.G711.encode \
+    libOMX.TI.G722.decode \
     libOMX.TI.G722.encode \
-    libOMX.TI.JPEG.decoder \
+    libOMX.TI.G726.decode \
     libOMX.TI.G726.encode \
     libOMX.TI.G729.decode \
+    libOMX.TI.G729.encode \
+    libOMX.TI.ILBC.decode \
+    libOMX.TI.ILBC.encode \
+    libOMX.TI.JPEG.decoder \
+    libOMX.TI.JPEG.encoder \
+    libOMX.TI.MP3.decode \
     libOMX.TI.Video.Decoder \
-    libOMX.TI.AMR.decode \
-    libOMX.TI.G726.decode
+    libOMX.TI.Video.encoder \
+    libOMX.TI.VPP \
+    libOMX.TI.WBAMR.decode \
+    libOMX.TI.WBAMR.encode \
+    libOMX.TI.WMA.decode \
 
 PRODUCT_PACKAGES += \
     hwcomposer.omap3 \
     lights.p970 \
     audio.a2dp.default \
     libaudioutils \
-    libtiutils \
-    libion \
-    libomap_mm_library_jni \
     libemoji
 
 # SGX530 is slower with the scissor optimization enabled
