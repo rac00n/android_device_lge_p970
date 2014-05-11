@@ -97,7 +97,8 @@ RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p970/vibrator.c
 
 # for legacy blobs
-COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB -DOMAP_ICS_CAMERA -DNEEDS_VECTORIMPL_SYMBOLS -DP970_ICS_CAMERA -DP970_ICS_AUDIO
+COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB -DOMAP_ICS_CAMERA -DNEEDS_VECTORIMPL_SYMBOLS
+BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 
 # for frameworks/native/services/surfaceflinger
 # use EGL_IMG_context_priority extension, which helps performance
@@ -106,8 +107,6 @@ COMMON_GLOBAL_CFLAGS += -DHAS_CONTEXT_PRIORITY
 # for frameworks/native/libs/gui
 # disable use of EGL_KHR_fence_sync extension, since it slows things down
 COMMON_GLOBAL_CFLAGS += -DDONT_USE_FENCE_SYNC
-
-LG_CAMERA_HARDWARE := true
 
 BOARD_SYSFS_LIGHT_SENSOR := "/sys/devices/platform/omap/omap_i2c.2/i2c-2/2-0060/leds/lcd-backlight/als"
 
@@ -120,6 +119,4 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_RIL_CLASS := ../../../device/lge/p970/ril/
 
 #KitKat specific flags
-BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
-SENSORS_NEED_SETRATE_ON_ENABLE := true
 USE_SET_METADATA := false
