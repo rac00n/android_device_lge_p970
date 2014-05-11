@@ -53,6 +53,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/p970/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/lge/p970/bluetooth/vnd_p970.txt
 
 # OMX
 HARDWARE_OMX := true
@@ -65,12 +66,11 @@ BOARD_WLAN_DEVICE := bcm4329
 WIFI_DRIVER_FW_PATH_STA         := "/system/etc/firmware/fw_bcm4329.bin"
 WIFI_DRIVER_FW_PATH_AP          := "/system/etc/firmware/fw_bcm4329_ap.bin"
 WIFI_DRIVER_FW_PATH_P2P         := "/system/etc/firmware/fw_bcm4329_p2p.bin"
-WIFI_DRIVER_FW_PATH_MFG         := "/system/etc/firmware/fw_bcm4329_mfg.bin"
 WIFI_DRIVER_MODULE_NAME         := "wireless"
 WIFI_DRIVER_MODULE_PATH         := "/system/lib/modules/wireless.ko"
 WIFI_DRIVER_MODULE_ARG          := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/system/etc/wifi/nvram.txt config_path=/data/misc/wifi/config"
+WIFI_DRIVER_MODULE_AP_ARG       :="firmware_path=/system/etc/firmware/fw_bcm4329_ap.bin nvram_path=/system/etc/wifi/nvram.txt config_path=/data/misc/wifi/softap.conf"
 WPA_SUPPLICANT_VERSION          := VER_0_8_X
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_wext
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 WIFI_DRIVER_HAS_LGE_SOFTAP      := true
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
@@ -113,7 +113,6 @@ BOARD_SYSFS_LIGHT_SENSOR := "/sys/devices/platform/omap/omap_i2c.2/i2c-2/2-0060/
 # Charger mode
 COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"rs"' -DBOARD_CHARGING_CMDLINE_VALUE='"c"'
 BOARD_ALLOW_SUSPEND_IN_CHARGER := true
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
 ## Radio fixes
 BOARD_RIL_CLASS := ../../../device/lge/p970/ril/
