@@ -77,7 +77,8 @@ PRODUCT_COPY_FILES += \
 
 ## Alsa configs
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/asound.conf:system/etc/asound.conf
+    $(LOCAL_PATH)/configs/asound.conf:system/etc/asound.conf \
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Charger mode
 PRODUCT_PACKAGES += \
@@ -129,6 +130,7 @@ PRODUCT_PACKAGES += \
     hwcomposer.omap3 \
     lights.p970 \
     audio.a2dp.default \
+    audio.usb.default \
     libaudioutils \
     libemoji
 
