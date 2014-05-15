@@ -85,7 +85,6 @@ PRODUCT_PACKAGES += \
     charger_res_images
 
 PRODUCT_PACKAGES += \
-    power.black \
     prb \
     lgcpversion \
     wifimac
@@ -126,6 +125,7 @@ PRODUCT_PACKAGES += \
     libOMX.TI.WMA.decode \
 
 PRODUCT_PACKAGES += \
+    power.p970 \
     hwcomposer.p970 \
     lights.p970 \
     audio.a2dp.default \
