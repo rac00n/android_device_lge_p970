@@ -126,7 +126,7 @@ PRODUCT_PACKAGES += \
     libOMX.TI.WMA.decode \
 
 PRODUCT_PACKAGES += \
-    hwcomposer.black \
+    hwcomposer.p970 \
     lights.p970 \
     audio.a2dp.default \
     libaudioutils \
