@@ -63,15 +63,6 @@
 #define MAX(a,b)		  ((a)>(b)?(a):(b))
 #define CLAMP(x,low,high) (((x)>(high))?(high):(((x)<(low))?(low):(x)))
 
-#if defined(SCREEN_WIDTH) && defined(SCREEN_HEIGHT)
-/* This trickery is needed to get the preprocessor to stringify the expansion
-   of a macro */
-#define _STR(s)		#s
-#define STR(s)		_STR(s)
-
-#define SCREEN_RES STR(SCREEN_WIDTH) "," STR(SCREEN_HEIGHT)
-#endif
-
 struct ext_transform_t {
     __u8 rotation : 3;          /* 90-degree clockwise rotations */
     __u8 hflip    : 1;          /* flip l-r (after rotation) */
@@ -1880,7 +1871,7 @@ static int omap3_hwc_device_open(const hw_module_t* module, const char* name,
          hwc_dev->ext.mirror_region.right, hwc_dev->ext.mirror_region.bottom);
 
     /* read switch state */
-    int sw_fd = open("/sys/class/switch/display_support/state", O_RDONLY);
+    /*int sw_fd = open("/sys/class/switch/display_support/state", O_RDONLY);
     int hpd = 0;
     if (sw_fd >= 0) {
         char value;
@@ -1888,7 +1879,7 @@ static int omap3_hwc_device_open(const hw_module_t* module, const char* name,
             hpd = value == '1';
         close(sw_fd);
     }
-    handle_hotplug(hwc_dev, hpd);
+    handle_hotplug(hwc_dev, hpd);*/
 
     ALOGE("omap3_hwc_device_open(rgb_order=%d nv12_only=%d)",
         hwc_dev->flags_rgb_order, hwc_dev->flags_nv12_only);
@@ -1906,8 +1897,6 @@ done:
         pthread_mutex_destroy(&hwc_dev->lock);
         free(hwc_dev->buffers);
         free(hwc_dev);
-    } else {
-        omap3_hwc_reset_screen(hwc_dev);
     }
 
     return err;
