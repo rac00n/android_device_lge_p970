@@ -9,3 +9,5 @@
 /dev/block/mmcblk0p4        /recovery           emmc        defaults                                                              recoveryonly
 
 /devices/platform/omap/omap_hsmmc.0/mmc_host    auto    auto    defaults    voldmanaged=sdcard0:auto,noemulatedsd
+
+/dev/block/zram0            none                swap        defaults    zramsize=134217728
