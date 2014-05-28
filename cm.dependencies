@@ -1,7 +1,0 @@
-[
- {
-   "repository": "lge-kernel-sniper",
-   "target_path": "kernel/lge/p970",
-   "branch": "cm-11.0"
- }
-]
