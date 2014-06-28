@@ -31,8 +31,6 @@
 
     <bool name="config_disableMenuKeyInLockScreen">true</bool>
 
-    <bool name="config_automatic_brightness_available">true</bool>
-
     <!-- These are all dummies, but need to be present to enable UI control of auto-brightness
          The actual control and values are all in-kernel -->
     <integer-array name="config_autoBrightnessLevels">
@@ -62,33 +60,19 @@
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
          in the config_autoBrightnessLevels array.  This array should have size one greater
          than the size of the config_autoBrightnessLevels array.
-         P970 has no keyboard so all values are zero.
-    -->
+         This must be overridden in platform specific overlays -->
+
     <integer-array name="config_autoBrightnessKeyboardBacklightValues">
-        <item>0</item>
-        <item>0</item>
+        <item>255</item>
+        <item>255</item>
         <item>0</item>
     </integer-array>
 
-    <!-- List of regexpressions describing the interface (if any) that represent tetherable
-         USB interfaces.  If the device doesn't want to support tething over USB this should
-         be empty.  An example would be "usb.*" -->
+   <!-- The default iface on which to monitor data use -->
+    <string name="config_datause_iface">vsnet0</string>
+
     <string-array translatable="false" name="config_tether_usb_regexs">
-        <item>"rndis0"</item>
-    </string-array>
-
-    <!-- List of regexpressions describing the interface (if any) that represent tetherable
-         Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
-         should be empty.  An example would be "softap.*" -->
-    <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"wlan0"</item>
-    </string-array>
-
-    <!-- List of regexpressions describing the interface (if any) that represent tetherable
-         bluetooth interfaces.  If the device doesn't want to support tethering over bluetooth this
-         should be empty. -->
-    <string-array translatable="false" name="config_tether_bluetooth_regexs">
-        <item>"bt-pan"</item>
+    <item>"rndis0"</item>
     </string-array>
 
     <!-- Array of ConnectivityManager.TYPE_xxxx values allowable for tethering -->
@@ -101,12 +85,14 @@
         <item>7</item>
     </integer-array>
 
-   <!-- The default iface on which to monitor data use -->
-    <string name="config_datause_iface">vsnet0</string>
+    <string-array translatable="false" name="config_tether_wifi_regexs">
+        <item>"wl0.1"</item>
+        <item>"wlan0"</item>
+    </string-array>
 
     <!-- Boolean indicating whether the start command should be called on the wireless interface
                   when starting the SoftAp -->
-    <!--bool name="config_wifiApStartInterface">true</bool-->
+    <bool name="config_wifiApStartInterface">true</bool>
 
     <!-- Default color for notification LED. -->
     <color name="config_defaultNotificationColor">#ff0000ff</color>
@@ -123,10 +109,6 @@
     <!-- Default value for led color when battery is medium charged -->
     <integer name="config_notificationsBatteryMediumARGB">0xFF000000</integer>
 
-    <!-- Boolean indicating if current platform supports bluetooth wide band
-         speech -->
-    <bool name="config_bluetooth_wide_band_speech">false</bool>
-
     <!-- Default value for led color when battery is fully charged -->
     <integer name="config_notificationsBatteryFullARGB">0xFFFF0000</integer>
 
@@ -142,4 +124,9 @@
 
     <!-- Device supports LED flashlight -->
     <bool name="config_enableTorch">true</bool>
+
+    <!-- Device configuration setting the /proc/sys/vm/extra_free_kbytes tunable
+         in the kernel. Default is 3 full-screen 32 bpp buffers, i.e. 4500KB
+         on Nexus S. Let's double this value. -->
+    <integer name="config_extraFreeKbytesAbsolute">9000</integer>
 </resources>

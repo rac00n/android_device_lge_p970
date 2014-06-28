@@ -26,7 +26,7 @@ int main() {
 	int fd1; FILE *fd2;
 	int macbyte;
 	int addrcount = 0;
-	char macaddr[17];
+	char macaddr[18]; //17 doesn't include the '\0' #xonar_
 	int i;
 
 	fd1 = open("/dev/block/mmcblk0p11",O_RDONLY);
@@ -38,7 +38,7 @@ int main() {
 		read(fd1,&macbyte,1);
 		addrcount+=macbyte;
 		if (i)
-			sprintf(macaddr,"%s:%.2x",macaddr,macbyte);
+			sprintf(macaddr+i*3-1,":%.2x",macbyte); // possible race condition fix, resolves segfaults #xonar_
 		else
 			sprintf(macaddr,"%.2x",macbyte);
 	}

@@ -1,4 +1,4 @@
-# Copyright (C) 2011 The CyanogenMod project
+# Copyright (C) 2011 Texas Instruments
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,20 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter p970, $(TARGET_BOOTLOADER_BOARD_NAME)),)
+###
+### OMAP ABE AUDIO HAL
+###
 
-LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
+LOCAL_MODULE := audio.primary.$(TARGET_BOOTLOADER_BOARD_NAME)
+
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
+LOCAL_SRC_FILES := audio_hw.c
+
+LOCAL_C_INCLUDES += \
+	external/tinyalsa/include \
+	$(call include-path-for, audio-utils) \
+	$(call include-path-for, audio-effects)
+LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libaudioutils libdl
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_SRC_FILES := getmac.c
+include $(BUILD_SHARED_LIBRARY)
 
-LOCAL_PRELINK_MODULE := false
-
-LOCAL_MODULE := wifimac
-
-include $(BUILD_EXECUTABLE)
-
-endif
