@@ -67,7 +67,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/Hookkey.kl:system/usr/keylayout/Hookkey.kl \
-    $(LOCAL_PATH)/configs/Hookkey.kl:system/usr/keylayout/Generic.kl
+    $(LOCAL_PATH)/configs/Generic.kl:system/usr/keylayout/Generic.kl
 
 # Charger mode
 PRODUCT_PACKAGES += \

@@ -144,6 +144,9 @@
     <!-- Device supports LED flashlight -->
     <bool name="config_enableTorch">true</bool>
 
+    <!-- Indicate whether the SD card is accessible without removing the battery. -->
+    <bool name="config_batterySdCardAccessibility">true</bool>
+
     <!-- Device configuration setting the /proc/sys/vm/extra_free_kbytes tunable
          in the kernel. Default is 3 full-screen 32 bpp buffers, i.e. 4500KB
          on Nexus S. Let's double this value. -->
