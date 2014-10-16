@@ -22,9 +22,6 @@ TARGET_NO_BOOTLOADER           := true
 TARGET_BOOTLOADER_BOARD_NAME   := black
 TARGET_PROVIDES_INIT_TARGET_RC := true
 
-TARGET_GLOBAL_CFLAGS   += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
-
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 BOARD_KERNEL_BASE    := 0x80000000
 BOARD_PAGE_SIZE      := 0x00000800
@@ -42,7 +39,6 @@ TARGET_RECOVERY_INITRC      := device/lge/p970/recovery/init.recovery.rc
 TARGET_SPECIFIC_HEADER_PATH := device/lge/p970/include
 
 TARGET_USERIMAGES_USE_EXT4         := true
-TARGET_USERIMAGES_USE_F2FS         := true
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 665681920
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1170259968
 BOARD_FLASH_BLOCK_SIZE             := 131072
@@ -57,7 +53,6 @@ BOARD_HAVE_BLUETOOTH                        := true
 BOARD_HAVE_BLUETOOTH_BCM                    := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/p970/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF                 := device/lge/p970/bluetooth/libbt_vndcfg.txt
-#BOARD_HAVE_FM_RADIO                         := true
 
 # ION
 BOARD_HAVE_OLD_ION_API := true
@@ -95,19 +90,20 @@ WIFI_DRIVER_HAS_LGE_SOFTAP       := true
 BOARD_WPA_SUPPLICANT_DRIVER      := WEXT
 TARGET_HAS_LEGACY_WLAN           := true
 
+# HWC
 TARGET_OMAP3_HWC_BOOTLOADER_DISPLAY_INIT := true
+TARGET_OMAP3_HWC_DISABLE_YUV_OVERLAY     := true
 
 BOARD_EGL_CFG       := device/lge/p970/configs/egl.cfg
 ENABLE_WEBGL        := true
 USE_OPENGL_RENDERER := true
 
-BOARD_USE_BGRA_8888               := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p970/vibrator.c
-BOARD_SYSFS_LIGHT_SENSOR          := "/sys/devices/platform/omap/omap_i2c.2/i2c-2/2-0060/leds/lcd-backlight/als"
+BOARD_SYSFS_LIGHT_SENSOR          := "/sys/devices/platform/omap/omap_i2c.2/i2c-2/2-0060/brightness_mode\", \"/sys/devices/platform/omap/omap_i2c.2/i2c-2/2-001a/brightness_mode"
 
-COMMON_GLOBAL_CFLAGS           += -DNEEDS_VECTORIMPL_SYMBOLS -DHAS_CONTEXT_PRIORITY -DDONT_USE_FENCE_SYNC
+COMMON_GLOBAL_CFLAGS           += -DNEEDS_VECTORIMPL_SYMBOLS -DHAS_CONTEXT_PRIORITY
 COMMON_GLOBAL_CFLAGS           += -DBOARD_CHARGING_CMDLINE_NAME='"rs"' -DBOARD_CHARGING_CMDLINE_VALUE='"c"'
 BOARD_ALLOW_SUSPEND_IN_CHARGER := true
 
@@ -121,24 +117,8 @@ COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DOMAP_ICS_CAMERA -DCAMERA_LEGACY_HACK
 TARGET_POWERHAL_VARIANT    := cm
 TARGET_USES_CPU_BOOST_HINT := true
 
-# Fix Graphics Issues
-PRODUCT_PROPERTY_OVERRIDES += \
-        ro.zygote.disable_gl_preload=true \
-        ro.bq.gpu_to_cpu_unsupported=true \
-        dalvik.vm.debug.alloc=0 \
-        ro.hwui.disable_scissor_opt=true
-
 # No, we dont want METADATA -.-
 USE_SET_METADATA := false
-
-# Additional Props
-PRODUCT_PROPERTY_OVERRIDES += \
-        ro.config.low_ram=true \
-        dalvik.vm.jit.codecachesize=0
-
-# adb root
-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0 \
-        ro.secure=0
 
 # Misc Flags
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/omap/musb-omap2430/musb-hdrc/gadget/lun%d/file"

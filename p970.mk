@@ -33,6 +33,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
@@ -128,6 +129,7 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio_policy.default \
     audio.primary.black \
+    audio.r_submix.default \
     audio.usb.default \
     libaudioutils \
     libemoji \
@@ -136,16 +138,41 @@ PRODUCT_PACKAGES += \
     libtiutils \
     lights.black
 
-# F2FS filesystem
-PRODUCT_PACKAGES += \
-    mkfs.f2fs \
-    fsck.f2fs \
-    fibmap.f2fs \
-    f2fstat
-
 $(call inherit-product, build/target/product/full.mk)
-
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
+
+# Fix Graphics Issues
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.zygote.disable_gl_preload=true \
+        ro.bq.gpu_to_cpu_unsupported=true \
+        dalvik.vm.debug.alloc=0 \
+        ro.hwui.disable_scissor_opt=true
+
+# Additional hwui configuration
+PRODUCT_PROPERTY_OVERRIDES += \
+        hwui.use_gpu_pixel_buffers=false \
+        ro.hwui.drop_shadow_cache_size=0.5 \
+        ro.hwui.fbo_cache_size=4 \
+        ro.hwui.r_buffer_cache_size=1 \
+        ro.hwui.text_gamma_correction=shader \
+        ro.hwui.text_large_cache_width=512 \
+        ro.hwui.text_large_cache_height=128 \
+        ro.hwui.text_small_cache_width=256 \
+        ro.hwui.text_small_cache_height=64 \
+        ro.hwui.texture_cache_size=4 \
+
+# Additional Props
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.config.low_ram=true \
+        dalvik.vm.jit.codecachesize=0
+
+# adb root
+ADDITIONAL_DEFAULT_PROPERTIES += \
+        ro.adb.secure=0 \
+        ro.secure=0
+
+# Enable Torch
+PRODUCT_PACKAGES += Torch
 
 PRODUCT_AAPT_CONFIG := normal hdpi
 
